@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(AntonOpenGL4Tuto LANGUAGES CXX)
 
-set(INSTALL_PROJECTDIR "D:/Software/Programming/Projects/antonopengl4tuto/bin")
+set(INSTALL_PROJECTDIR "${CMAKE_SOURCE_DIR}/bin")
 set(TARGET_NAME "AntonOpenGL4Tuto")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui OpenGL)

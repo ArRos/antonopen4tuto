@@ -1,2 +1,2 @@
 # opengl4tuto
-My own version of Anton Gerdelan's OpenGL 4 tutorials (see https://antongerdelan.net/opengl/)
+The purpose of this project is to provide me with a codebase to play with the Opengl 4 features of Qt 6.

@@ -1,55 +1,9 @@
-// Copyright (C) 2016 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+#include "trianglewindow.h"
 
-#include "openglwindow.h"
-
-#include <QGuiApplication>
 #include <QMatrix4x4>
-#include <QOpenGLShaderProgram>
 #include <QScreen>
 #include <QtMath>
 
-
-//! [1]
-class TriangleWindow : public OpenGLWindow
-{
-public:
-    using OpenGLWindow::OpenGLWindow;
-
-    void initialize() override;
-    void render() override;
-
-private:
-    GLint m_posAttr = 0;
-    GLint m_colAttr = 0;
-    GLint m_matrixUniform = 0;
-
-    QOpenGLShaderProgram *m_program = nullptr;
-    int m_frame = 0;
-};
-//! [1]
-
-//! [2]
-int main(int argc, char **argv)
-{
-    QGuiApplication app(argc, argv);
-
-    QSurfaceFormat format;
-    format.setSamples(16);
-
-    TriangleWindow window;
-    window.setFormat(format);
-    window.resize(640, 480);
-    window.show();
-
-    window.setAnimating(true);
-
-    return app.exec();
-}
-//! [2]
-
-
-//! [3]
 static const char *vertexShaderSource =
     "attribute highp vec4 posAttr;\n"
     "attribute lowp vec4 colAttr;\n"
@@ -65,9 +19,7 @@ static const char *fragmentShaderSource =
     "void main() {\n"
     "   gl_FragColor = col;\n"
     "}\n";
-//! [3]
 
-//! [4]
 void TriangleWindow::initialize()
 {
     m_program = new QOpenGLShaderProgram(this);
@@ -81,9 +33,7 @@ void TriangleWindow::initialize()
     m_matrixUniform = m_program->uniformLocation("matrix");
     Q_ASSERT(m_matrixUniform != -1);
 }
-//! [4]
 
-//! [5]
 void TriangleWindow::render()
 {
     const qreal retinaScale = devicePixelRatio();
@@ -101,9 +51,9 @@ void TriangleWindow::render()
     m_program->setUniformValue(m_matrixUniform, matrix);
 
     static const GLfloat vertices[] = {
-         0.0f,  0.707f,
+        0.0f,  0.707f,
         -0.5f, -0.5f,
-         0.5f, -0.5f
+        0.5f, -0.5f
     };
 
     static const GLfloat colors[] = {
@@ -127,4 +77,3 @@ void TriangleWindow::render()
 
     ++m_frame;
 }
-//! [5]

@@ -32,6 +32,7 @@ void TriangleWindow::render()
     glViewport(0, 0, width() * retinaScale, height() * retinaScale);
 
     glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.7f, 0.7f, 0.8f, 1.0f);
 
     m_program->bind();
 
@@ -45,13 +46,19 @@ void TriangleWindow::render()
     static const GLfloat vertices[] = {
         0.0f,  0.707f, 0.0f,
         -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f
+        0.5f, -0.5f, 0.0f,
+        0.0f,  0.707f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        1.0f, 0.707f, 0.0f
     };
 
     static const GLfloat colors[] = {
         1.0f, 0.0f, 0.0f,
         0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f
+        0.0f, 0.0f, 1.0f,
+        0.0f, 0.0f, 0.0f,
+        1.0f, 1.0f, 1.0f,
+        0.5f, 0.5f, 0.5f
     };
 
     glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
@@ -60,7 +67,7 @@ void TriangleWindow::render()
     glEnableVertexAttribArray(m_posAttr);
     glEnableVertexAttribArray(m_colAttr);
 
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 
     glDisableVertexAttribArray(m_colAttr);
     glDisableVertexAttribArray(m_posAttr);

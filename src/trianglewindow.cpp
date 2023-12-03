@@ -51,9 +51,9 @@ void TriangleWindow::render()
     m_program->setUniformValue(m_matrixUniform, matrix);
 
     static const GLfloat vertices[] = {
-        0.0f,  0.707f,
-        -0.5f, -0.5f,
-        0.5f, -0.5f
+        0.0f,  0.707f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f
     };
 
     static const GLfloat colors[] = {
@@ -62,7 +62,7 @@ void TriangleWindow::render()
         0.0f, 0.0f, 1.0f
     };
 
-    glVertexAttribPointer(m_posAttr, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
     glEnableVertexAttribArray(m_posAttr);

@@ -4,23 +4,6 @@
 #include <QScreen>
 #include <QtMath>
 #include <QDebug>
-#include <QUrl>
-
-static const char *vertexShaderSource =
-    "attribute highp vec4 posAttr;\n"
-    "attribute lowp vec4 colAttr;\n"
-    "varying lowp vec4 col;\n"
-    "uniform highp mat4 matrix;\n"
-    "void main() {\n"
-    "   col = colAttr;\n"
-    "   gl_Position = matrix * posAttr;\n"
-    "}\n";
-
-static const char *fragmentShaderSource =
-    "varying lowp vec4 col;\n"
-    "void main() {\n"
-    "   gl_FragColor = col;\n"
-    "}\n";
 
 void TriangleWindow::initialize()
 {
@@ -32,13 +15,15 @@ void TriangleWindow::initialize()
     {
         qCritical() << m_program->log();
     }
-
-    m_posAttr = m_program->attributeLocation("posAttr");
-    Q_ASSERT(m_posAttr != -1);
-    m_colAttr = m_program->attributeLocation("colAttr");
-    Q_ASSERT(m_colAttr != -1);
-    m_matrixUniform = m_program->uniformLocation("matrix");
-    Q_ASSERT(m_matrixUniform != -1);
+    else
+    {
+        m_posAttr = m_program->attributeLocation("posAttr");
+        Q_ASSERT(m_posAttr != -1);
+        m_colAttr = m_program->attributeLocation("colAttr");
+        Q_ASSERT(m_colAttr != -1);
+        m_matrixUniform = m_program->uniformLocation("matrix");
+        Q_ASSERT(m_matrixUniform != -1);
+    }
 }
 
 void TriangleWindow::render()

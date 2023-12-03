@@ -13,6 +13,7 @@ qt_add_executable(${TARGET_NAME}
     src/openglwindow.cpp src/openglwindow.h
     src/trianglewindow.h src/trianglewindow.cpp
     shaders/shaders.qrc
+    textures/textures.qrc
 )
 
 set_target_properties(${TARGET_NAME} PROPERTIES

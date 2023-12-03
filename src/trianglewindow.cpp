@@ -3,6 +3,8 @@
 #include <QMatrix4x4>
 #include <QScreen>
 #include <QtMath>
+#include <QDebug>
+#include <QUrl>
 
 static const char *vertexShaderSource =
     "attribute highp vec4 posAttr;\n"
@@ -23,9 +25,14 @@ static const char *fragmentShaderSource =
 void TriangleWindow::initialize()
 {
     m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
-    m_program->link();
+    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, "../shaders/basic_vs.vert");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, "../shaders/basic_fs.frag");
+
+    if(!m_program->link())
+    {
+        qCritical() << m_program->log();
+    }
+
     m_posAttr = m_program->attributeLocation("posAttr");
     Q_ASSERT(m_posAttr != -1);
     m_colAttr = m_program->attributeLocation("colAttr");

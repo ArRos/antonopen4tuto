@@ -11,8 +11,9 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui OpenGL)
 qt_standard_project_setup()
 
 qt_add_executable(openglwindow
-    main.cpp
-    openglwindow.cpp openglwindow.h
+    src/main.cpp
+    src/openglwindow.cpp src/openglwindow.h
+    src/trianglewindow.h src/trianglewindow.cpp
 )
 
 set_target_properties(openglwindow PROPERTIES
